@@ -4,8 +4,6 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -13,8 +11,8 @@ import static com.codeborne.selenide.Selenide.*;
 public class AutomationPracticeForm {
 
     @BeforeAll
-static void config(){
-        Configuration.holdBrowserOpen = true;
+    static void config() {
+        Configuration.holdBrowserOpen = false;
         Configuration.pageLoadStrategy = "eager";
     }
 
@@ -23,6 +21,8 @@ static void config(){
         open("https://demoqa.com/automation-practice-form");
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
+
+
         $("#firstName").setValue("Jack");
         $("#lastName").setValue("The Sparrow");
         $("#userEmail").setValue("jack_the_sparrow@gmail.com");
@@ -37,18 +37,18 @@ static void config(){
 
 //        Предметы
         $("#subjectsInput").setValue("Computer");
-        $(byText("Computer Science")).click();
+        $("#subjectsWrapper").$(byText("Computer Science")).click();
         $("#subjectsInput").setValue("Hin");
-        $(byText("Hindi")).click();
+        $("#subjectsWrapper").$(byText("Hindi")).click();
         $("#subjectsInput").setValue("Ph");
-        $(byText("Physics")).click();
+        $("#subjectsWrapper").$(byText("Physics")).click();
 
 //        Хобби
         $("#hobbiesWrapper").$(byText("Sports")).click();
         $("#hobbiesWrapper").$(byText("Music")).click();
 
 //        Выбор картинки
-        $("#uploadPicture").uploadFile(new File("D:\\catinabox-150x150.jpg"));
+        $("#uploadPicture").uploadFromClasspath("catinabox-150x150.jpg");
 
 //        Адрес
         $("#currentAddress-wrapper").$("#currentAddress").setValue("Russian Federation, Moscow");
@@ -60,15 +60,15 @@ static void config(){
         $("#submit").click();
 
 //        Проверки
-        $(".table-responsive").$(byText("Jack The Sparrow")).shouldHave(text("Jack The Sparrow"));
-        $(".table-responsive").$(byText("jack_the_sparrow@gmail.com")).shouldHave(text("jack_the_sparrow@gmail.com"));
-        $(".table-responsive").$(byText("Male")).shouldHave(text("Male"));
-        $(".table-responsive").$(byText("9876543210")).shouldHave(text("9876543210"));
-        $(".table-responsive").$(byText("02 March,1997")).shouldHave(text("02 March,1997"));
-        $(".table-responsive").$(byText("Computer Science, Hindi, Physics")).shouldHave(text("Computer Science, Hindi, Physics"));
-        $(".table-responsive").$(byText("Sports, Music")).shouldHave(text("Sports, Music"));
-        $(".table-responsive").$(byText("catinabox-150x150.jpg")).shouldHave(text("catinabox-150x150.jpg"));
-        $(".table-responsive").$(byText("Russian Federation, Moscow")).shouldHave(text("Russian Federation, Moscow"));
-        $(".table-responsive").$(byText("Haryana Karnal")).shouldHave(text("Haryana Karnal"));
+        $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text("Jack The Sparrow"));
+        $(".table-responsive").$(byText("Student Email")).parent().shouldHave(text("jack_the_sparrow@gmail.com"));
+        $(".table-responsive").$(byText("Gender")).parent().shouldHave(text("Male"));
+        $(".table-responsive").$(byText("Mobile")).parent().shouldHave(text("9876543210"));
+        $(".table-responsive").$(byText("Date of Birth")).parent().shouldHave(text("02 March,1997"));
+        $(".table-responsive").$(byText("Subjects")).parent().shouldHave(text("Computer Science, Hindi, Physics"));
+        $(".table-responsive").$(byText("Hobbies")).parent().shouldHave(text("Sports, Music"));
+        $(".table-responsive").$(byText("Picture")).parent().shouldHave(text("catinabox-150x150.jpg"));
+        $(".table-responsive").$(byText("Address")).parent().shouldHave(text("Russian Federation, Moscow"));
+        $(".table-responsive").$(byText("State and City")).parent().shouldHave(text("Haryana Karnal"));
     }
 }
