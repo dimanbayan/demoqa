@@ -9,17 +9,11 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class AutomationPracticeForm {
-
-    @BeforeAll
-    static void config() {
-        Configuration.holdBrowserOpen = false;
-        Configuration.pageLoadStrategy = "eager";
-    }
+public class AutomationPracticeForm extends TestBase{
 
     @Test
     void fillingForm() {
-        open("https://demoqa.com/automation-practice-form");
+        open("/automation-practice-form");
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
 
