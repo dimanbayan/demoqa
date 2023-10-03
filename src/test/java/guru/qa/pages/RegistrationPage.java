@@ -10,42 +10,47 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
 
-    SelenideElement firstName = $("#firstName");
-    SelenideElement lastName = $("#lastName");
-    SelenideElement userEmail = $("#userEmail");
-    SelenideElement userGender = $("#genterWrapper");
-    SelenideElement userNumber = $("#userNumber");
-    SelenideElement subject = $("#subjectsInput");
-    SelenideElement hobbie = $("#hobbiesWrapper");
-    SelenideElement picture = $("#uploadPicture");
-    SelenideElement currentAddress = $("#currentAddress-wrapper").$("#currentAddress");
-    SelenideElement state = $("#stateCity-wrapper").$("#state");
-    SelenideElement city = $("#stateCity-wrapper").$("#city");
-    SelenideElement submit = $("#submit");
+    SelenideElement firstName = $("#firstName"),
+            lastName = $("#lastName"),
+            userEmail = $("#userEmail"),
+            userGender = $("#genterWrapper"),
+            userNumber = $("#userNumber"),
+            subject = $("#subjectsInput"),
+            hobbie = $("#hobbiesWrapper"),
+            picture = $("#uploadPicture"),
+            currentAddress = $("#currentAddress-wrapper").$("#currentAddress"),
+            state = $("#stateCity-wrapper").$("#state"),
+            city = $("#stateCity-wrapper").$("#city"),
+            submit = $("#submit"),
 
     // Форма с таблицей
 
-    SelenideElement resultForm = $(".modal-dialog");
-    SelenideElement formHeader = $(".modal-header");
+            resultForm = $(".modal-dialog"),
+            formHeader = $(".modal-header"),
 
-    SelenideElement studentName = $(".table-responsive").$(byText("Student Name")).parent();
-    SelenideElement studentEmail = $(".table-responsive").$(byText("Student Email")).parent();
-    SelenideElement studentGender = $(".table-responsive").$(byText("Gender")).parent();
-    SelenideElement studentMobile = $(".table-responsive").$(byText("Mobile")).parent();
-    SelenideElement studentBirthday = $(".table-responsive").$(byText("Date of Birth")).parent();
-    SelenideElement studentSubjects = $(".table-responsive").$(byText("Subjects")).parent();
-    SelenideElement studentHobbies = $(".table-responsive").$(byText("Hobbies")).parent();
-    SelenideElement studentPicture = $(".table-responsive").$(byText("Picture")).parent();
-    SelenideElement studentAddress = $(".table-responsive").$(byText("Address")).parent();
-    SelenideElement studentStateCity = $(".table-responsive").$(byText("State and City")).parent();
+            studentName = $(".table-responsive").$(byText("Student Name")).parent(),
+            studentEmail = $(".table-responsive").$(byText("Student Email")).parent(),
+            studentGender = $(".table-responsive").$(byText("Gender")).parent(),
+            studentMobile = $(".table-responsive").$(byText("Mobile")).parent(),
+            studentBirthday = $(".table-responsive").$(byText("Date of Birth")).parent(),
+            studentSubjects = $(".table-responsive").$(byText("Subjects")).parent(),
+            studentHobbies = $(".table-responsive").$(byText("Hobbies")).parent(),
+            studentPicture = $(".table-responsive").$(byText("Picture")).parent(),
+            studentAddress = $(".table-responsive").$(byText("Address")).parent(),
+            studentStateCity = $(".table-responsive").$(byText("State and City")).parent();
 
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
+        return this;
+    }
+
+    public RegistrationPage removeBanners() {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         return this;
     }
+
 
     public RegistrationPage setFirstName(String value) {
         firstName.setValue(value);

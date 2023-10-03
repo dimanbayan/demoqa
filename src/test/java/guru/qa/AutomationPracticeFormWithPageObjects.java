@@ -1,16 +1,15 @@
 package guru.qa;
 
-import com.codeborne.selenide.Configuration;
 import guru.qa.pages.RegistrationPage;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-public class AutomationPracticeFormWithPageObjects extends TestBase{
+public class AutomationPracticeFormWithPageObjects extends TestBase {
 
     @Test
     void fillingForm() {
         RegistrationPage registrationPage = new RegistrationPage();
         registrationPage.openPage()
+                .removeBanners()
                 .setFirstName("Jack")
                 .setLastName("The Sparrow")
                 .setEmail("jack_the_sparrow@gmail.com")

@@ -7,25 +7,30 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class TextBoxPage {
 
-    SelenideElement fullName = $("#userName");
-    SelenideElement userEmail = $("#userEmail");
-    SelenideElement currentAddress = $("#currentAddress");
-    SelenideElement permanentAddress = $("#permanentAddress");
-    SelenideElement submit = $("button#submit");
+    SelenideElement fullName = $("#userName"),
+            userEmail = $("#userEmail"),
+            currentAddress = $("#currentAddress"),
+            permanentAddress = $("#permanentAddress"),
+            submit = $("button#submit"),
 
 //    Проверки
 
-    SelenideElement outputName = $("#output #name");
-    SelenideElement outputEmail = $("#output #email");
-    SelenideElement outputCurrentAddress = $("#output #currentAddress");
-    SelenideElement outputPermanentAddress = $("#output #permanentAddress");
+            outputName = $("#output #name"),
+            outputEmail = $("#output #email"),
+            outputCurrentAddress = $("#output #currentAddress"),
+            outputPermanentAddress = $("#output #permanentAddress");
 
     public TextBoxPage openPage() {
         open("/text-box");
-//        executeJavaScript("$('#fixedban').remove()");
+        return this;
+    }
+
+    public TextBoxPage removeBanners() {
+        executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         return this;
     }
+
 
     public TextBoxPage setFullName(String value) {
         fullName.setValue(value);

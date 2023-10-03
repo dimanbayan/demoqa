@@ -7,7 +7,7 @@ public class TestBase {
     @BeforeAll
     static void config() {
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.holdBrowserOpen = true;
+//        Configuration.holdBrowserOpen = false;
         Configuration.pageLoadStrategy = "eager";
     }
 }
